@@ -2,7 +2,7 @@
 
 export default function cliente(){
     return(
-        <div>
+        <div className="conteudos">
             <h1>TELA CLIENTE</h1>
         </div>
     )

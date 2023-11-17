@@ -6,7 +6,7 @@ export default function Home() {
     <div>
       <div class="home-header">
         <section class="cx-header-logo">
-          <img src="/img/LOGO.png" className='img-logo'></img>
+                    <a href="/"><img src="/img/LOGO.png" className='img-logo'></img></a>
         </section>
         <section class="cx-header-link">
           <a href="#home-planos">Planos</a>

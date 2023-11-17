@@ -42,7 +42,9 @@ html {
   margin: 5px;
   border: 1px solid red;
 }
-
+.cx-header-register i{
+  margin-right: 10px;
+}
 .img-logo{
   width: 100px;
 }
@@ -284,7 +286,7 @@ margin-left: 40px !important;
 
   .voltar_btn {
     width: 100%;
-    border: 2px solid red !important;
+
     color: white !important;
     margin: 10px;
   }
@@ -312,8 +314,21 @@ margin-left: 40px !important;
     background-color: red !important;
   }
 
+.inpt-edit{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 450px;
+  height: 100%;
+  margin-bottom: 0px !important;
+}
+.inpt-edit input{
+  width: 100px !important;
+}
 
-
+.conteudo-cliente{
+  background-color: #252525;
+}
 
 .cx-full-tela{
   width: 100%;
@@ -379,7 +394,6 @@ margin-left: 40px !important;
   flex-direction: column;
 }
 .btn-nav .cx-items-nav a{
-  border: 2px solid yellow;
   text-decoration: none;
   list-style: none;
   margin: 10px 0px 10px 0px;
@@ -421,4 +435,14 @@ margin-left: 40px !important;
 
 .text-rotas h1{
   color: white;
+}
+
+
+.body-cliente{
+  height: 100%;
+}
+.conteudo-cliente{
+  height: auto;
+  min-height: 300px;
+  padding: 20px;
 }
