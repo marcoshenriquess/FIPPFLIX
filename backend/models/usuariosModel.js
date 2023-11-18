@@ -123,7 +123,7 @@ class UsuarioModel {
 
         for(let i = 0; i<rows.length; i++){
             lista.push(new UsuarioModel(rows[i]["usu_id"],
-            rows[i]["usu_email"], rows[i]["usu_nome"], rows[i]["perfil_id"], rows[i]["usu_datacadastro"]))
+            rows[i]["usu_email"], rows[i]["usu_nome"], rows[i]["per_id"], rows[i]["usu_datacadastro"]))
         }
 
         return lista;

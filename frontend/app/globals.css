@@ -348,7 +348,7 @@ margin-left: 40px !important;
 }
 .conteudo-admin{
   background-color: #252525;
-  padding: 40px;
+  padding: 20px;
   border-radius: 15px;
   flex: 3;
   height: 100%;
@@ -445,4 +445,42 @@ margin-left: 40px !important;
   height: auto;
   min-height: 300px;
   padding: 20px;
+}
+.cx-table-main{
+  background-color: white;
+  border-radius: 15px;
+  width: 100%;
+  padding: 10px;
+  border: 2px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cx-table-main table{
+  border-radius: 15px;
+  width: 100%;
+}
+.cx-table-main table thead{
+  width: 100%;
+}
+.cx-table-main table td, .cx-table-main table th{
+  border: 1px solid rgba(173, 173, 173, 0.062);
+  padding-left: 10px;
+}
+
+.cx-table-main table .id-valor{
+  width: 50px;
+  text-align: center;
+}
+.coluna-acoes{
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+}
+
+.cx-titulo-tela-admin{
+  color: white;
+  margin-bottom: 30px;
 }

@@ -35,7 +35,7 @@ class PerfilModel {
 
         for(let i = 0; i<rows.length; i++){
 
-            let perfil = new PerfilModel(rows[i]["perfil_id"], rows[i]["descricao"]);
+            let perfil = new PerfilModel(rows[i]["per_id"], rows[i]["per_nome"]);
 
             lista.push(perfil);
         }
@@ -45,8 +45,8 @@ class PerfilModel {
 
     toJSON() {
         return {
-            "perfilId": this.#perfilId,
-            "perfilDescricao": this.#perfilDescricao
+            "per_id": this.#perfilId,
+            "per_nome": this.#perfilDescricao
         };
     }
 }
