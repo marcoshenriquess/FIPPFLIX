@@ -484,3 +484,21 @@ margin-left: 40px !important;
   color: white;
   margin-bottom: 30px;
 }
+
+.cx-dropdown{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+.edit-menu-drop{
+  background-color: #252525 !important;
+  width: 200px !important;
+
+}
+.edit-menu-drop li{
+}
+.edit-menu-drop li a{
+  width: auto;
+  text-align: left;
+}
