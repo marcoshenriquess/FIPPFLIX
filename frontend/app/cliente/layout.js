@@ -36,7 +36,7 @@ export default function BarSerachNav({ children }) {
                 </section>
 
                 <section class="cx-header-register">
-                    <button onClick={logout} href="#home-cadastrar"><i class="fas fa-sign-out-alt"></i>Log-out</button>
+                    <button onClick={logout} className='btn btn-primary'><i class="fas fa-sign-out-alt"></i>Sair</button>
                 </section>
             </div>
             <div className="conteudo-cliente">

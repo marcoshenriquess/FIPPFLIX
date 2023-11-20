@@ -78,12 +78,24 @@ function realizarPagamento(valor, plano, nome, planoId,usuId) {
           <a href="#home-planos">Planos</a>
           <a href="#home-sobre">Sobre</a>
         </section>{
-          user != null ? <a class="cx-header-register" href="/cliente">{user.nome}  <br></br> Área do cliente</a> :    
+          user != null ?
+          
+          <div class="cx-dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            {user.nome}
+            </button>
+            <ul class="dropdown-menu edit-menu-drop" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="/admin">Área do Administrador</a></li>
+              <li><a class="dropdown-item" href="/cliente">Área do cliente</a></li>
+              <li><a class="dropdown-item" href="/cliente">Something else here</a></li>
+            </ul>
+          </div>
+            :
             <section class="cx-header-register">
-            <a href="/login">Entrar</a>
-            <hr />
-            <a href="#home-cadastrar">Cadastrar</a>         
-        </section>
+              <a href="/login">Entrar</a>
+              <hr />
+              <a href="#home-cadastrar">Cadastrar</a>
+            </section>
         }
 
       </div>
