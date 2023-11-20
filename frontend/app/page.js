@@ -3,21 +3,25 @@ import imgLogo from '../public/img/LOGO.png';
 import httpClient from './utils/httpClient';
 import { useEffect, useRef, useState, useContext } from "react"
 import UserContext from "./context/userContext";
+import { Alert } from '@/public/template/js/bootstrap.bundle';
 
 export default function Home() {
+
   const nome = useRef("");
   const email = useRef("");
   const senha = useRef("");
   const plano = useRef();
   const { user, setUser } = useContext(UserContext);
 
-  function cadastrarUsuario() {
+  async function cadastrarUsuario() {
     let status = 0;
     if(nome.current.value != "" && 
         email.current.value != "" &&
         plano.current.value != 0 &&
         senha.current.value != "") {
-        
+        let PlanoAt = plano.current.value;
+        let NomeAt = nome.current.value;
+
         httpClient.post('/usuario/criar', {
             nome: nome.current.value,
             email: email.current.value,
@@ -29,21 +33,40 @@ export default function Home() {
             status = r.status;
             return r.json();
         })
-        .then(r=> {
-            alert(r.msg);
-            if(status == 200){
-                nome.current.value = "";
-                email.current.value = "";
-                plano.current.value = 0;
-                senha.current.value = "";
+        .then( r=> {
+            if(status == 200){      
+              nome.current.value = "";
+              email.current.value = "";
+              plano.current.value = 0;
+              senha.current.value = "";   
             }
         })
-    }
+      }
     else{
         alert("Preencha os campos corretamente!");
     }
 }
+function realizarPagamento(valor, plano, nome, planoId,usuId) {
+  let status = 0;
+  httpClient.post('/pagamento/checkout', {
+      valor: valor,
+      plano: plano,
+      nome: nome,
+      planoId: planoId,
+      usuId: usuId
+  })
+      .then(r => {
+          status = r.status;
+          return r.json();
+      })
+      .then(r => {
+          if (status == 200) {
+              window.location.href = r.url;
+          }
+      })
+}
   return (
+
     <div>
       <div class="home-header">
         <section class="cx-header-logo">

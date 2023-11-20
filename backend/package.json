@@ -3,6 +3,7 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "mysql2": "^3.6.3",
+    "stripe": "^14.5.0",
     "swagger-autogen": "^2.23.5",
     "swagger-ui-express": "^5.0.0"
   },

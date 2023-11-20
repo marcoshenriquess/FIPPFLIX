@@ -83,9 +83,9 @@ class UsuarioModel {
 
             let valores = [this.#email,  this.#senha, this.#nome, this.#perfilId]
 
-            let ok = await banco.ExecutaComandoNonQuery(sql, valores);
+            let idGravado = await banco.ExecutaComandoLastInserted(sql, valores);
 
-            return ok;
+            return idGravado;
         }
         else //comando update
         { 
@@ -113,7 +113,12 @@ class UsuarioModel {
 
         return null
     }
-
+    async obterLastInsert(){
+            let sql = "select  usu_id from tb_usuario  order by usu_id desc limit 1";
+            let rows = await banco.ExecutaComando(sql);
+            let Id = rows[0]["usu_id"];
+            return Id;
+        }
     async obterTodos() {
 
         let sql  = "select * from tb_usuario";

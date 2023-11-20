@@ -2,6 +2,7 @@ const express = require('express');
 const usuarioRota = require('./routes/usuarioRoute');
 const perfilRota = require('./routes/perfilRoute');
 const loginRota = require('./routes/loginRoute');
+const assinaturaRota = require('./routes/assinaturaRoute');
 const swaggerJson = require('./outputSwagger.json');
 const swaggerUi = require('swagger-ui-express');
 const cors = require('cors');
@@ -13,6 +14,7 @@ app.use('/usuario', usuarioRota);
 app.use('/cliente', usuarioRota);
 app.use('/perfil', perfilRota);
 app.use('/login', loginRota);
+app.use('/pagamento', assinaturaRota);
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerJson))
 
 app.listen('4000', function() {
