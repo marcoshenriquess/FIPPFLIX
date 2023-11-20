@@ -13,6 +13,21 @@ export default function Home() {
   const plano = useRef();
   const { user, setUser } = useContext(UserContext);
 
+    function logout() {
+        let status = 0;
+        httpClient.get('/login/logout')
+        .then(r=> {
+            status = r.status;
+        })
+        .then(r=> {
+            if(status == 200){
+                setUser(null);
+                localStorage.removeItem("usuarioLogado")
+                window.location.href = '/';
+            }
+        })
+      }
+
  function cadastrarUsuario() {
   //Precisa setar o id do plano no combo, e também receber o id do usuário na requisição
     let status = 0;
@@ -28,7 +43,7 @@ export default function Home() {
             email: email.current.value,
             plano: plano.current.value,
             senha: senha.current.value,
-            perfilId: 1
+            perfilId: 3
           })
         .then(r=> {
             status = r.status;
@@ -85,9 +100,12 @@ function realizarPagamento(valor, plano, nome, planoId,usuId) {
             {user.nome}
             </button>
             <ul class="dropdown-menu edit-menu-drop" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="/admin">Área do Administrador</a></li>
-              <li><a class="dropdown-item" href="/cliente">Área do cliente</a></li>
-              <li><a class="dropdown-item" href="/cliente">Something else here</a></li>
+              {
+                user.perfilId == 4 ? <li><a class="dropdown-item" href="/admin">Área do Administrador</a></li>
+                :
+                <li><a class="dropdown-item" href="/cliente">Área do cliente</a></li>
+              }
+              <li><a class="dropdown-item" href='/' onClick={logout}>Sair</a></li>
             </ul>
           </div>
             :

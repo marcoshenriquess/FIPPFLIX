@@ -31,7 +31,7 @@ export default function BarSerachNav({ children }) {
                     <a href="#">Meu Plano</a>
                     <div class="input-group mb-3 inpt-edit">
                         <input type="text" class="form-control edit-inpt-form" placeholder="Pesquisar" aria-label="Recipient's username" aria-describedby="button-addon2" />
-                        <button class="btn btn-outline-danger" type="button" id="button-addon2">Button</button>
+                        <button class="btn btn-outline-danger" type="button" id="button-addon2"><i className='fa fa-search'></i></button>
                     </div>
                 </section>
 

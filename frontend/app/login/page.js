@@ -26,7 +26,7 @@ export default function Login() {
                 if(status == 200){
                     setUser(r.usuario);
                     localStorage.setItem("usuarioLogado", JSON.stringify(r.usuario));
-                    if(r.usuario.perfilId == 1)
+                    if(r.usuario.perfilId == 4)
                         window.location.href = "/admin";
                     else
                         window.location.href = "/cliente";

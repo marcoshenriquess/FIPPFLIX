@@ -8,7 +8,7 @@ let ctrl = new PagamentoController();
 
 router.post("/checkout/", (req, res) => {
     // #swagger.tags = ['Pagamento']
-    ctrl.checkout2(req, res);
+    ctrl.checkout(req, res);
 })
 
 

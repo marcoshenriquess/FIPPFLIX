@@ -11,11 +11,11 @@ class LoginController {
 
             if(usuario != null) {
                 let assinatura = new AssinaturaModel();
-                assinatura.pla_id = 1;
+                assinatura.pla_id = 3;
                 assinatura.usu_id = usuario.id;
                 assinatura.pago = false;
                 assinatura = await assinatura.verificarPagamento();
-                if(assinatura.pago || usuario.perfilId == 1){
+                if(assinatura.pago || usuario.perfilId == 4 || usuario.perfilId == 3){
                     res.cookie('cookieAuth', 'PFSII');
                     res.status('200').json({msg: 'Usuário autenticado!', usuario: usuario.toJSON()});
                 }else{

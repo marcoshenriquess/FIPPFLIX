@@ -127,8 +127,8 @@ class UsuarioModel {
         let lista = [];
 
         for(let i = 0; i<rows.length; i++){
-            lista.push(new UsuarioModel(rows[i]["usu_id"],
-            rows[i]["usu_email"], rows[i]["usu_nome"], rows[i]["per_id"], rows[i]["usu_datacadastro"]))
+            lista.push(new UsuarioModel(rows[i]["usu_id"],rows[i]["usu_nome"],
+            rows[i]["usu_email"],  rows[i]["per_id"], rows[i]["usu_datacadastro"]))
         }
 
         return lista;
@@ -155,7 +155,8 @@ class UsuarioModel {
 
         if(rows.length > 0) {
             return new UsuarioModel(rows[0]["usu_id"],
-            rows[0]["usu_nome"], rows[0]["usu_email"], rows[0]["per_id"], rows[0]["usu_ativo"], rows[0]["usu_datacadastro"])
+            rows[0]["usu_nome"], rows[0]["usu_email"],
+            rows[0]["per_id"])
         }
 
         return null;
