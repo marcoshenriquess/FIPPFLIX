@@ -18,5 +18,10 @@ router.post('/autenticar', (req, res) => {
     */
     ctrl.autenticar(req, res);
 })
+router.get('/logout', (req, res) => {
+    //#swagger.tags = ['Login']
+
+    ctrl.logout(req, res);
+})
 
 module.exports = router;

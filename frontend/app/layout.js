@@ -3,6 +3,7 @@ import '../public/template/css/sb-admin-2.min.css'
 import '../public/template/css/fontawesome-free/css/all.min.css'
 import '../public/template/css/bootstrap.min.css'
 import './globals.css'
+import { UserProvider } from './context/userContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -13,8 +14,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <UserProvider>
+      <html lang="en">
+        <body className={inter.className}>{children}</body>
+      </html>
+    </UserProvider>
+
   )
 }

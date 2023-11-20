@@ -1,6 +1,25 @@
 'use client'
+import httpClient from '../utils/httpClient';
+import UserContext from "../context/userContext";
+import { useContext } from "react";
 
 export default function BarSerachNav({ children }) {
+    const { user, setUser } = useContext(UserContext);
+
+    function logout() {
+        let status = 0;
+        httpClient.get('/login/logout')
+        .then(r=> {
+            status = r.status;
+        })
+        .then(r=> {
+            if(status == 200){
+                setUser(null);
+                localStorage.removeItem("usuarioLogado")
+                window.location.href = '/';
+            }
+        })
+      }
     return (
         <div className="body-cliente">
             <div class="home-header">
@@ -17,7 +36,7 @@ export default function BarSerachNav({ children }) {
                 </section>
 
                 <section class="cx-header-register">
-                    <a href="#home-cadastrar"><i class="fas fa-sign-out-alt"></i>Log-out</a>
+                    <button onClick={logout} href="#home-cadastrar"><i class="fas fa-sign-out-alt"></i>Log-out</button>
                 </section>
             </div>
             <div className="conteudo-cliente">

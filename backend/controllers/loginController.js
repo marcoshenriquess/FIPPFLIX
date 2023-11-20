@@ -20,6 +20,11 @@ class LoginController {
             res.status('400').json({msg: 'Requisição inválida'});
         }
     }
+    async logout(req, res) {
+        res.clearCookie("cookieAuth");
+
+        res.status(200).json({msg: "Usuário deslogado!"});
+    } 
 }
 
 module.exports = LoginController;

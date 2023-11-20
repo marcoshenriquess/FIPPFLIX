@@ -1,7 +1,48 @@
 'use client'
 import imgLogo from '../public/img/LOGO.png';
+import httpClient from './utils/httpClient';
+import { useEffect, useRef, useState, useContext } from "react"
+import UserContext from "./context/userContext";
 
 export default function Home() {
+  const nome = useRef("");
+  const email = useRef("");
+  const senha = useRef("");
+  const plano = useRef();
+  const { user, setUser } = useContext(UserContext);
+
+  function cadastrarUsuario() {
+    let status = 0;
+    if(nome.current.value != "" && 
+        email.current.value != "" &&
+        plano.current.value != 0 &&
+        senha.current.value != "") {
+        
+        httpClient.post('/usuario/criar', {
+            nome: nome.current.value,
+            email: email.current.value,
+            plano: plano.current.value,
+            senha: senha.current.value,
+            perfilId: 1
+          })
+        .then(r=> {
+            status = r.status;
+            return r.json();
+        })
+        .then(r=> {
+            alert(r.msg);
+            if(status == 200){
+                nome.current.value = "";
+                email.current.value = "";
+                plano.current.value = 0;
+                senha.current.value = "";
+            }
+        })
+    }
+    else{
+        alert("Preencha os campos corretamente!");
+    }
+}
   return (
     <div>
       <div class="home-header">
@@ -11,12 +52,15 @@ export default function Home() {
         <section class="cx-header-link">
           <a href="#home-planos">Planos</a>
           <a href="#home-sobre">Sobre</a>
+        </section>{
+          user != null ? <a class="cx-header-register" href="/cliente">{user.nome}  <br></br> Área do cliente</a> :    
+            <section class="cx-header-register">
+            <a href="/login">Entrar</a>
+            <hr />
+            <a href="#home-cadastrar">Cadastrar</a>         
         </section>
-        <section class="cx-header-register">
-          <a href="/login">Registrar</a>
-          <hr />
-          <a href="#home-cadastrar">Cadastrar</a>
-        </section>
+        }
+
       </div>
       <div class="home-nav">
         <div className='nav-title'>
@@ -24,7 +68,7 @@ export default function Home() {
           <h1>Bem-vindo ao FippFlix da sua diversão!</h1>
         </div>
         <div className='nav-btt'>
-          <a href="#" className="btn btn-primary">Cadastrar-se</a>
+          <a href="#home-cadastrar" className="btn btn-primary">Cadastrar-se</a>
         </div>
       </div>
       <div id='home-sobre'>
@@ -120,25 +164,25 @@ export default function Home() {
           <form>
             <div class="mb-3">
               <label for="exampleInputNome" class="form-label">Seu nome:</label>
-              <input type="text" class="form-control" id="exampleInputNome" />
+              <input ref={nome} type="text" class="form-control" id="exampleInputNome" />
             </div>
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Email:</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+              <input ref={email} type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Senha:</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" />
+              <input ref={senha} type="password" class="form-control" id="exampleInputPassword1" />
             </div>
             <div class="mb-3">
               <label for="disabledSelect" class="form-label">Escolha o plano:</label>
-              <select id="disabledSelect" class="form-select">
+              <select ref={plano} id="disabledSelect" class="form-select">
                 <option>Plano 01</option>
                 <option>Plano 02</option>
                 <option>Plano 03</option>
               </select>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button onClick={cadastrarUsuario} type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>
       </div>

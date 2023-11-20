@@ -10,6 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(cors({origin: 'http://localhost:3000', credentials: true}))
 app.use('/usuario', usuarioRota);
+app.use('/cliente', usuarioRota);
 app.use('/perfil', perfilRota);
 app.use('/login', loginRota);
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerJson))

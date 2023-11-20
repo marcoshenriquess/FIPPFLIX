@@ -77,15 +77,16 @@ class UsuarioController {
     }
 
     criar(req, res) {
-        if(Object.keys(req.body).length == 5) {
+        if(Object.keys(req.body).length == 4) {
             let usuarioModel = new UsuarioModel();
 
             usuarioModel.id = 0;
             usuarioModel.nome = req.body.nome;
             usuarioModel.ativo = req.body.ativo;
             usuarioModel.email = req.body.email;
-            usuarioModel.perfilId = req.body.perfilId;           
+            usuarioModel.plano = req.body.plano;           
             usuarioModel.senha = req.body.senha;
+            usuarioModel.perfilId = req.body.perfilId;
             let ok = usuarioModel.gravar()
             if(ok)
                 res.status(200).json({msg: "Usuário adicionado!"})
