@@ -152,6 +152,147 @@
         ]
       }
     },
+    "/cliente/obter/{id}": {
+      "get": {
+        "tags": [
+          "Usuário"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              "PFSII"
+            ]
+          }
+        ]
+      }
+    },
+    "/cliente/listar": {
+      "get": {
+        "tags": [
+          "Usuário"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              "PFSII"
+            ]
+          }
+        ]
+      }
+    },
+    "/cliente/criar": {
+      "post": {
+        "tags": [
+          "Usuário"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              "PFSII"
+            ]
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/usuario"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cliente/alterar": {
+      "put": {
+        "tags": [
+          "Usuário"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              "PFSII"
+            ]
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/usuario"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cliente/excluir/{id}": {
+      "delete": {
+        "tags": [
+          "Usuário"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Id do usuário a ser excluído"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              "PFSII"
+            ]
+          }
+        ]
+      }
+    },
     "/perfil/listar": {
       "get": {
         "tags": [
@@ -191,6 +332,63 @@
                 "$ref": "#/components/schemas/login"
               }
             }
+          }
+        }
+      }
+    },
+    "/login/logout": {
+      "get": {
+        "tags": [
+          "Login"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/pagamento/checkout/": {
+      "post": {
+        "tags": [
+          "Pagamento"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/pagamento/pagamento-sucesso/{planoId}/{usuId}": {
+      "post": {
+        "tags": [
+          "Pagamento"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "planoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "usuId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
           }
         }
       }

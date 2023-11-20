@@ -1,4 +1,5 @@
 const UsuarioModel = require("../models/usuariosModel");
+const AssinaturaModel = require('../models/assinaturaModel');
 
 
 class LoginController {
@@ -9,8 +10,17 @@ class LoginController {
             usuario = await usuario.autenticar(req.body.email, req.body.senha)
 
             if(usuario != null) {
-                res.cookie('cookieAuth', 'PFSII');
-                res.status('200').json({msg: 'Usuário autenticado!', usuario: usuario.toJSON()});
+                let assinatura = new AssinaturaModel();
+                assinatura.pla_id = 1;
+                assinatura.usu_id = usuario.id;
+                assinatura.pago = false;
+                assinatura = await assinatura.verificarPagamento();
+                if(assinatura.pago || usuario.perfilId == 1){
+                    res.cookie('cookieAuth', 'PFSII');
+                    res.status('200').json({msg: 'Usuário autenticado!', usuario: usuario.toJSON()});
+                }else{
+                    res.status(500).json({msg: "Usuário não contém pagamento realizados!"})
+                }
             }
             else{
                 res.status('404').json({msg: 'Usuário não encontrado'})

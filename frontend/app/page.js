@@ -13,7 +13,7 @@ export default function Home() {
   const plano = useRef();
   const { user, setUser } = useContext(UserContext);
 
-  async function cadastrarUsuario() {
+ function cadastrarUsuario() {
     let status = 0;
     if(nome.current.value != "" && 
         email.current.value != "" &&
@@ -38,7 +38,8 @@ export default function Home() {
               nome.current.value = "";
               email.current.value = "";
               plano.current.value = 0;
-              senha.current.value = "";   
+              senha.current.value = "";  
+              realizarPagamento(500,PlanoAt,NomeAt,1,1); 
             }
         })
       }
