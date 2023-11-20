@@ -293,6 +293,147 @@
         ]
       }
     },
+    "/conteudo/obter/{id}": {
+      "get": {
+        "tags": [
+          "Conteúdo"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              "PFSII"
+            ]
+          }
+        ]
+      }
+    },
+    "/conteudo/listar": {
+      "get": {
+        "tags": [
+          "Conteúdo"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              "PFSII"
+            ]
+          }
+        ]
+      }
+    },
+    "/conteudo/criar": {
+      "post": {
+        "tags": [
+          "Conteúdo"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              "PFSII"
+            ]
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/conteudo"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/conteudo/alterar": {
+      "put": {
+        "tags": [
+          "Conteúdo"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              "PFSII"
+            ]
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/conteudo"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/conteudo/excluir/{id}": {
+      "delete": {
+        "tags": [
+          "Conteúdo"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Id do Conteúdo a ser excluído"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              "PFSII"
+            ]
+          }
+        ]
+      }
+    },
     "/perfil/listar": {
       "get": {
         "tags": [

@@ -1,5 +1,7 @@
 'use client'
 import { useRef } from "react"
+import httpClient from "@/app/utils/httpClient"
+import { Alert } from "@/public/template/js/bootstrap.bundle";
 
 export default function CriarConteudo() {
     const youtubeId = useRef("");
@@ -10,16 +12,14 @@ export default function CriarConteudo() {
    function cadastrarConteudo() {
       let status = 0;
       if(youtubeId.current.value != "" && 
-          titulo.current.value != "" &&
-          cat_id.current.value != "" 
+          titulo.current.value != ""
           ) {
   
           httpClient.post('/conteudo/criar', {
               youtubeId: youtubeId.current.value,
               titulo: titulo.current.value,
-              cat_id: cat_id.current.value,
-              disponivel: disponivel.current.value,
-              perfilId: 1
+              cat_id: 1,
+              disponivel: 'S',
             })
           .then(r=> {
               status = r.status;
@@ -29,10 +29,9 @@ export default function CriarConteudo() {
               if(status == 200){      
                 youtubeId.current.value = "";
                 titulo.current.value = "";
-                cat_id.current.value = 0;
-                disponivel.current.value = "";  
-                realizarPagamento(500,cat_idAt,youtubeIdAt,1,1); 
+                cat_id.current.value = "";
               }
+              alert(r.msg);
           })
         }
       else{
@@ -44,29 +43,29 @@ export default function CriarConteudo() {
             <form class="row g-3">
                 <div class="col-md-6">
                     <label for="idConteudo" class="form-label">ID do Video</label>
-                    <input type="titulo" class="form-control" id="idConteudo"/>
+                    <input ref={youtubeId} type="titulo" class="form-control" id="idConteudo"/>
                 </div>
                 <div class="col-md-6">
                     <label for="tituloConteudo" class="form-label">Título</label>
-                    <input type="text" class="form-control" id="tituloConteudo"/>
+                    <input ref={titulo} type="text" class="form-control" id="tituloConteudo"/>
                 </div>
                 <div class="col-md-4">
                     <label for="inputState" class="form-label">Categoria</label>
-                    <select id="inputState" class="form-select">
+                    <select ref={cat_id} id="inputState" class="form-select">
                         <option selected>Choose...</option>
                         <option>...</option>
                     </select>
                 </div>
                 <div class="col-12">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck"/>
+                        <input ref={disponivel} class="form-check-input" type="checkbox" id="gridCheck"/>
                             <label class="form-check-label" for="gridCheck">
                                 Conteúdo Disponível?
                             </label>
                     </div>
                 </div>
                 <div class="col-12">
-                    <a href="#" class="btn btn-primary btn-edit">Cadastrar</a>
+                    <button onClick={cadastrarConteudo} class="btn btn-primary btn-edit" >Cadastrar</button>
                     <a href="/admin/conteudo" class="btn btn-primary btn-edit">Cancelar</a>
                 </div>
             </form>
