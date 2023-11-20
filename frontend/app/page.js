@@ -14,6 +14,7 @@ export default function Home() {
   const { user, setUser } = useContext(UserContext);
 
  function cadastrarUsuario() {
+  //Precisa setar o id do plano no combo, e também receber o id do usuário na requisição
     let status = 0;
     if(nome.current.value != "" && 
         email.current.value != "" &&

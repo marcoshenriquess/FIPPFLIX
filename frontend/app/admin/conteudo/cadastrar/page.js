@@ -4,6 +4,7 @@ import httpClient from "@/app/utils/httpClient"
 import { Alert } from "@/public/template/js/bootstrap.bundle";
 
 export default function CriarConteudo() {
+    //Precisa setar o id da categoria na referência e setar o disponivel true/false baseado no checked
     const youtubeId = useRef("");
     const titulo = useRef("");
     const disponivel = useRef("");
