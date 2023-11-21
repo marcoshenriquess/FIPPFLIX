@@ -89,11 +89,11 @@ class UsuarioModel {
         }
         else //comando update
         { 
-            let sql = "update tb_usuario set usu_email = ?, usu_senha = ?, usu_nome = ?, perfil_id = ? where usu_id = ?"
+            let sql = "update tb_usuario set usu_email = ?, usu_senha = ?, usu_nome = ?, per_id = ? where usu_id = ?"
 
             let valores = [this.#email,  this.#senha, this.#nome, this.#perfilId, this.#id]
 
-            let ok = await banco.ExecutamandoNonQuery(sql, valores);
+            let ok = await banco.ExecutaComandoNonQuery(sql, valores);
 
             return ok;
         }

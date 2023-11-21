@@ -454,6 +454,19 @@
         ]
       }
     },
+    "/plano/listar": {
+      "get": {
+        "tags": [
+          "Plano"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/login/autenticar": {
       "post": {
         "tags": [

@@ -55,13 +55,12 @@ class UsuarioController {
     }
 
     async alterar(req, res){
-        if(Object.keys(req.body).length == 6){
+        if(Object.keys(req.body).length == 5){
 
             let usuarioModel = new UsuarioModel();
 
             usuarioModel.id = req.body.id;
             usuarioModel.nome = req.body.nome;
-            usuarioModel.ativo = req.body.ativo;
             usuarioModel.email = req.body.email;
             usuarioModel.perfilId = req.body.perfilId;           
             usuarioModel.senha = req.body.senha;
@@ -77,12 +76,11 @@ class UsuarioController {
     }
 
     criar(req, res) {
-        if(Object.keys(req.body).length == 5) {
+        if(Object.keys(req.body).length == 4) {
             let usuarioModel = new UsuarioModel();
 
             usuarioModel.id = 0;
             usuarioModel.nome = req.body.nome;
-            usuarioModel.ativo = req.body.ativo;
             usuarioModel.email = req.body.email;
             usuarioModel.perfilId = req.body.perfilId;           
             usuarioModel.senha = req.body.senha;

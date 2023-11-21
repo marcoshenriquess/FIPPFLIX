@@ -1,5 +1,6 @@
 'use client'
 import httpClient from "@/app/utils/httpClient";
+import Link from "next/link";
 import { useEffect, useState } from "react"
 
 
@@ -15,6 +16,19 @@ export default function Usuario() {
             .then(r => {
                 setListaUsuario(r);
             })
+    }
+
+    function ExcluirUsu(id) {
+        if (confirm("Tem certeza que deseja excluir este usuário?")) {
+            httpClient.delete(`/usuario/excluir/${id}`)
+                .then(r => {
+                    return r.json();
+                })
+                .then(r => {
+                    alert(r.msg);
+                    ListaUsu();
+                })
+        }
     }
 
     useEffect(() => {
@@ -43,26 +57,26 @@ export default function Usuario() {
                                     listaUsuario.map(function (value, index) {
                                         return <tr key={index}>
                                             <td className="id-valor">{value.id}</td>
-                                            <td>{value.email}</td>
                                             <td>{value.nome}</td>
+                                            <td>{value.email}</td>
                                             <td>{value.perfilId}</td>
                                             <td className="coluna-acoes">
-                                                <button onClick={() => excluirUsuario(value.id)} className="btn btn-success">
+                                                <Link className="btn btn-success"  href={`/admin/usuarios/alterar/${value.id}`}>
                                                     <i className="fas fa-pen"></i>
-                                                </button>
-                                                <button onClick={() => excluirUsuario(value.id)} className="btn btn-primary">
-                                                    <i className="fas fa-trash"></i>
-                                                </button>
-                                            </td>
+                                                </Link>
+                                            <button onClick={() => ExcluirUsu(value.id)} className="btn btn-primary">
+                                                <i className="fas fa-trash"></i>
+                                            </button>
+                                        </td>
                                         </tr>
                                     })
                                 }
-                            </tbody>
+                        </tbody>
                         </table>
-                        :
-                        <>Nenhum usuário encontrado</>
+            :
+            <>Nenhum usuário encontrado</>
                 }
-            </div>
         </div>
+        </div >
     )
 }

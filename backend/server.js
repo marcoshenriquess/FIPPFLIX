@@ -1,6 +1,7 @@
 const express = require('express');
 const usuarioRota = require('./routes/usuarioRoute');
 const perfilRota = require('./routes/perfilRoute');
+const planoRota = require('./routes/planoRoute');
 const loginRota = require('./routes/loginRoute');
 const conteudoRota = require('./routes/conteudoRoute');
 const assinaturaRota = require('./routes/assinaturaRoute');
@@ -15,6 +16,7 @@ app.use('/usuario', usuarioRota);
 app.use('/cliente', usuarioRota);
 app.use('/conteudo', conteudoRota);
 app.use('/perfil', perfilRota);
+app.use('/plano', planoRota);
 app.use('/login', loginRota);
 app.use('/pagamento', assinaturaRota);
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerJson))

@@ -213,7 +213,7 @@ margin-left: 40px !important;
   width: 2px;
   background-color: red;
 }
-.footer{
+#footer{
   color: rgb(71, 71, 71);
   width: 100%;
   background-color: rgb(12, 12, 12);
@@ -468,6 +468,11 @@ margin-left: 40px !important;
   padding-left: 10px;
 }
 
+.tela-admin-cadastro-tit{
+  color: white;
+  display: flex;
+}
+
 .cx-table-main table .id-valor{
   width: 50px;
   text-align: center;
@@ -496,9 +501,23 @@ margin-left: 40px !important;
   width: 200px !important;
 
 }
-.edit-menu-drop li{
-}
 .edit-menu-drop li a{
   width: auto;
   text-align: left;
+}
+
+.tela-cad-admin{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.cad-admin-tit{
+  flex: 1;
+  color: white;
+  display: flex !important;
+  justify-items: center !important;
+  align-items: center !important;
+}
+.cad-admin-form{
+  flex: 4;
 }
