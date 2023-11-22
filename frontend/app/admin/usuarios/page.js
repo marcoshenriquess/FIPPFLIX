@@ -8,22 +8,22 @@ import { useContext, useEffect, useState } from "react"
 
 
 export default function Usuario() {
+    const [listaUsuario, setListaUsuario] = useState([]);
+    const { user, setUser } = useContext(UserContext);
+
     const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
         setIsClient(true);
+        ListaUsu();
     })
-
-    const { user, setUser } = useContext(UserContext);
-
 
     if(isClient == false){
         return (<LoadingPage></LoadingPage>)
     }
-    if(isClient && user != null && user.perfilId != 4) {
+    if(isClient && user.perfilId != 4 && user.perfilId != 5) {
         return (<NaoAutorizado></NaoAutorizado>)
     }
-    const [listaUsuario, setListaUsuario] = useState([]);
 
     function ListaUsu() {
         httpClient.get('/usuario/listar')
@@ -47,10 +47,6 @@ export default function Usuario() {
                 })
         }
     }
-
-    useEffect(() => {
-        ListaUsu();
-    }, [])
     return (
         <div>
             <div className="cx-titulo-tela-admin">

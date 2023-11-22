@@ -2,6 +2,8 @@
 import httpClient from './utils/httpClient';
 import { useEffect, useRef, useState, useContext } from "react"
 import UserContext from "./context/userContext";
+import '../public/template/js/bootstrap.bundle';
+
 
 export default function Home() {
 
@@ -26,7 +28,6 @@ export default function Home() {
         }
       })
   }
-
   function carregarPlano() {
     httpClient.get('/plano/listar')
       .then(r => {
@@ -112,20 +113,26 @@ export default function Home() {
           <a href="#footer">Desenvolvedores</a>
         </div>
         {
-          user != null ?
-            <div className="cx-dropdown">
-              <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          user != null
+            ?
+            <div class="cx-dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 {user.nome}
               </button>
-              <ul className="dropdown-menu edit-menu-drop" aria-labelledby="dropdownMenuButton1">
+              <ul class="dropdown-menu edit-menu-drop" aria-labelledby="dropdownMenuButton1">
                 {
-                  user.perfilId == 4
+                  user.perfilId == 3
                     ?
-                    <li><a className="dropdown-item" href="/admin">Área do Administrador</a></li>
+                    <li><a class="dropdown-item" href="/cliente">Área do cliente</a></li>
                     :
-                    <li><a className="dropdown-item" href="/cliente">Área do cliente</a></li>
+                    user.perfilId == 4
+                      ?
+                      <li><a class="dropdown-item" href="/admin">Área do Administrador</a></li>
+                      :
+                      <li><a class="dropdown-item" href="/admin">Área de Criação</a></li>
+
                 }
-                <button type='submit' className="dropdown-item" onClick={logout}>Sair</button>
+                <a href='/' class="dropdown-item" onClick={logout}>Sair</a>
               </ul>
             </div>
             :
@@ -164,72 +171,29 @@ export default function Home() {
           <h1>Confira nossos planos</h1>
         </div>
         <div className="row">
-          <div className="card card-edit col">
-            <div className="cx-card-title">
-              <h5 className="card-title">Plano 01</h5>
-            </div>
-            <div className="cx-card-img">
-              <img src="https://files.tecnoblog.net/wp-content/uploads/2015/07/netflix-logo.png" className="card-img-top"
-                alt="..."></img>
-            </div>
-            <div className="card-body cx-card-item">
-              <div className="item-ul">
-                <ul className="list-group">
-                  <li className="list-group-item"><i className="icon-edit fas fa-check"></i> An item</li>
-                  <li className="list-group-item"><i className="icon-edit fas fa-check"></i> A second item</li>
-                  <li className="list-group-item"><i className="icon-edit fas fa-check"></i> A third item</li>
-                </ul>
+          {
+            ListaPlano.map(function (value, index) {
+              return <div className="card card-edit col">
+                <div className="cx-card-title">
+                  <h5 className="card-title">{value.pla_nome}</h5>
+                </div>
+                <div className="card-body cx-card-item">
+                  <div className="item-ul">
+                    <p>{value.pla_descricao}</p>
+                  </div>
+                </div>
+                <div className="cx-card-bt">
+                  {
+                    user != null
+                    ?
+                    <a href="#home-sobre" className="btn btn-primary btn-edit">Assinar</a>
+                    :
+                    <a href="#home-cadastrar" className="btn btn-primary btn-edit">Assinar</a>
+                  }
+                </div>
               </div>
-            </div>
-            <div className="cx-card-bt">
-              <a href="#home-cadastrar" className="btn btn-primary btn-edit">Assinar</a>
-            </div>
-          </div>
-          <div className="card card-edit col">
-            <div className="cx-card-title">
-              <h5 className="card-title">Plano 02</h5>
-            </div>
-            <div className="cx-card-img">
-              <img src="https://files.tecnoblog.net/wp-content/uploads/2015/07/netflix-logo.png" className="card-img-top"
-                alt="..."></img>
-            </div>
-            <div className="card-body cx-card-item">
-              <div className="item-ul">
-                <ul className="list-group">
-                  <li className="list-group-item"><i className="icon-edit fas fa-check"></i> An item</li>
-                  <li className="list-group-item"><i className="icon-edit fas fa-check"></i> A second item</li>
-                  <li className="list-group-item"><i className="icon-edit fas fa-check"></i> A third item</li>
-                  <li className="list-group-item"><i className="icon-edit fas fa-check"></i> A fourth item</li>
-                </ul>
-              </div>
-            </div>
-            <div className="cx-card-bt">
-              <a href="#home-cadastrar" className="btn btn-primary btn-edit">Assinar</a>
-            </div>
-          </div>
-          <div className="card card-edit col">
-            <div className="cx-card-title">
-              <h5 className="card-title">Plano 03</h5>
-            </div>
-            <div className="cx-card-img">
-              <img src="https://files.tecnoblog.net/wp-content/uploads/2015/07/netflix-logo.png" className="card-img-top"
-                alt="..."></img>
-            </div>
-            <div className="card-body cx-card-item">
-              <div className="item-ul">
-                <ul className="list-group">
-                  <li className="list-group-item"><i className="icon-edit fas fa-check"></i> An item</li>
-                  <li className="list-group-item"><i className="icon-edit fas fa-check"></i> A second item</li>
-                  <li className="list-group-item"><i className="icon-edit fas fa-check"></i> A third item</li>
-                  <li className="list-group-item"><i className="icon-edit fas fa-check"></i> A fourth item</li>
-                  <li className="list-group-item"><i className="icon-edit fas fa-check"></i> And a fifth one</li>
-                </ul>
-              </div>
-            </div>
-            <div className="cx-card-bt">
-              <a href="#home-cadastrar" className="btn btn-primary btn-edit">Assinar</a>
-            </div>
-          </div>
+            })
+          }
         </div>
       </div>
 

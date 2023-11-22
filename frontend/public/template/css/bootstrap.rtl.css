@@ -4807,11 +4807,11 @@ textarea.form-control-lg {
 
 .list-group-numbered {
   list-style-type: none;
-  counter-reset: div;
+  counter-reset: section;
 }
 .list-group-numbered > li::before {
-  content: counters(div, ".") ". ";
-  counter-increment: div;
+  content: counters(section, ".") ". ";
+  counter-increment: section;
 }
 
 .list-group-item-action {

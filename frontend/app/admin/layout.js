@@ -6,7 +6,7 @@ import UserContext from "../context/userContext";
 
 export default function AdminLayout({ children }) {
 
-    const {user, setUser} = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
 
     return (
         <div className="cx-full-tela">
@@ -20,11 +20,20 @@ export default function AdminLayout({ children }) {
                         <div className="cx-items-nav">
                             <a href="/" className="btn btn-primary btn-edit-nav"><span className="cx-icon-nav"><i className="fas fa-home"></i></span><hr />Home</a>
                             {
-                                user.perfilId == 4 ? <a href="/admin/usuarios" className="btn btn-primary btn-edit-nav"><span className="cx-icon-nav"><i className="fa fa-user"></i></span><hr />Usuarios</a>
-                                :
-                                <a href="/admin/conteudo" className="btn btn-primary btn-edit-nav"><span className="cx-icon-nav"><i className="fa fa-play"></i></span><hr />Conteúdo</a>
+                                user.perfilId == 4
+                                    ?
+                                    <a href="/admin/usuarios" className="btn btn-primary btn-edit-nav"><span className="cx-icon-nav"><i className="fa fa-user"></i></span><hr />Usuarios</a>
+                                    :
+                                    <a href="/admin/conteudo" className="btn btn-primary btn-edit-nav"><span className="cx-icon-nav"><i className="fa fa-play"></i></span><hr />Conteúdo</a>
+                            
                             }
-                            <a href="/admin/pagamentos" className="btn btn-primary btn-edit-nav"><span className="cx-icon-nav"><i className="fa fa-money-check"></i></span><hr />Pagamentos</a>
+                            {
+                                user.perfilId == 4
+                                ?
+                                <a href="/admin/pagamentos" className="btn btn-primary btn-edit-nav"><span className="cx-icon-nav"><i className="fa fa-money-check"></i></span><hr />Pagamentos</a>
+                                :
+                                <></>
+                            }
                         </div>
                     </div>
                     <div className="footer-nav">
