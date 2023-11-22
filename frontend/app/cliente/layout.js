@@ -22,22 +22,22 @@ export default function BarSerachNav({ children }) {
       }
     return (
         <div className="body-cliente">
-            <div class="home-header">
-                <section class="cx-header-logo">
+            <div className="home-header">
+                <div className="cx-header-logo">
                     <a href="/"><img src="/img/LOGO.png" className='img-logo'></img></a>
-                </section>
-                <section class="cx-header-link">
+                </div>
+                <div className="cx-header-link">
                     <a href="#">Minha lista</a>
                     <a href="#">Meu Plano</a>
-                    <div class="input-group mb-3 inpt-edit">
-                        <input type="text" class="form-control edit-inpt-form" placeholder="Pesquisar" aria-label="Recipient's username" aria-describedby="button-addon2" />
-                        <button class="btn btn-outline-danger" type="button" id="button-addon2"><i className='fa fa-search'></i></button>
+                    <div className="input-group mb-3 inpt-edit">
+                        <input type="text" className="form-control edit-inpt-form" placeholder="Pesquisar" aria-label="Recipient's username" aria-describedby="button-addon2" />
+                        <button className="btn btn-outline-danger" type="button" id="button-addon2"><i className='fa fa-search'></i></button>
                     </div>
-                </section>
+                </div>
 
-                <section class="cx-header-register">
-                    <button onClick={logout} className='btn btn-primary'><i class="fas fa-sign-out-alt"></i>Sair</button>
-                </section>
+                <div className="cx-header-register">
+                    <button onClick={logout} className='btn btn-primary'><i className="fas fa-sign-out-alt"></i>Sair</button>
+                </div>
             </div>
             <div className="conteudo-cliente">
                 {children}

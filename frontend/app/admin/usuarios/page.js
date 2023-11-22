@@ -1,11 +1,28 @@
 'use client'
+import LoadingPage from "@/app/componentes/loadingPage";
+import NaoAutorizado from "@/app/componentes/naoAutorizado";
+import UserContext from "@/app/context/userContext";
 import httpClient from "@/app/utils/httpClient";
 import Link from "next/link";
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 
 
 export default function Usuario() {
+    const [isClient, setIsClient] = useState(false);
 
+    useEffect(() => {
+        setIsClient(true);
+    })
+
+    const { user, setUser } = useContext(UserContext);
+
+
+    if(isClient == false){
+        return (<LoadingPage></LoadingPage>)
+    }
+    if(isClient && user != null && user.perfilId != 4) {
+        return (<NaoAutorizado></NaoAutorizado>)
+    }
     const [listaUsuario, setListaUsuario] = useState([]);
 
     function ListaUsu() {

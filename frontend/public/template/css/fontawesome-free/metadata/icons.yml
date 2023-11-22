@@ -5680,7 +5680,7 @@ disease:
 divide:
   changes:
     - 5.0.13
-  label: Divide
+  label: divide
   search:
     terms:
       - arithmetic
@@ -14966,7 +14966,7 @@ puzzle-piece:
       - add-on
       - addon
       - game
-      - section
+      - div
   styles:
     - solid
   unicode: f12e

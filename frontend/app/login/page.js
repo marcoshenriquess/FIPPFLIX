@@ -48,33 +48,33 @@ export default function Login() {
     }
 
     return (
-        <div class="container h-100">
-            <div class="d-flex justify-content-center h-100">
-                <div class="user_card">
-                    <div class="d-flex justify-content-center">
-                        <div class="brand_logo_container">
-                            <img src="/img/LOGO.png" class="brand_logo" alt="Logo" />
+        <div className="container h-100">
+            <div className="d-flex justify-content-center h-100">
+                <div className="user_card">
+                    <div className="d-flex justify-content-center">
+                        <div className="brand_logo_container">
+                            <img src="/img/LOGO.png" className="brand_logo" alt="Logo" />
                         </div>
                     </div>
-                    <div class="d-flex justify-content-center form_container">
+                    <div className="d-flex justify-content-center form_container">
                         <form>
-                            <div class="input-group mb-3">
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            <div className="input-group mb-3">
+                                <div className="input-group-append">
+                                    <span className="input-group-text"><i className="fas fa-user"></i></span>
                                 </div>
-                                <input ref={email} type="text" class="form-control input_user" placeholder="E-Mail" />
+                                <input ref={email} type="text" className="form-control input_user" placeholder="E-Mail" />
                             </div>
-                            <div class="input-group mb-2">
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            <div className="input-group mb-2">
+                                <div className="input-group-append">
+                                    <span className="input-group-text"><i className="fas fa-key"></i></span>
                                 </div>
-                                <input ref={senha} type="password" class="form-control input_pass" placeholder="Senha" />
+                                <input ref={senha} type="password" className="form-control input_pass" placeholder="Senha" />
                             </div>
-                            <div class="d-flex justify-content-center mt-3 login_container">
+                            <div className="d-flex justify-content-center mt-3 login_container">
                             <button type="button" onClick={autenticar} className="btn login_btn">
                                 {carregando ? "Carregando..." : "Login"}
                             </button>                                
-                            <a href="/" type="button" class="btn voltar_btn">Voltar</a>
+                            <a href="/" type="button" className="btn voltar_btn">Voltar</a>
                             </div>
                         </form>
                     </div>

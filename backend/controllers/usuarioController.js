@@ -82,7 +82,7 @@ class UsuarioController {
             usuarioModel.id = 0;
             usuarioModel.nome = req.body.nome;
             usuarioModel.email = req.body.email;
-            usuarioModel.perfilId = req.body.perfilId;           
+            usuarioModel.perfilId = req.body.perfilId;          
             usuarioModel.senha = req.body.senha;
             let ok = usuarioModel.gravar()
             if(ok)

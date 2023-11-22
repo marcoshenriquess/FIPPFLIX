@@ -89,23 +89,23 @@ export default function UsuarioForm(props){
 
     return(
         <div className="tela-cadastro cx-table-main">
-            <form class="row">
-                <div class="mb-6">
-                    <label for="NomeUsuario" class="form-label">Nome:</label>
-                    <input  defaultValue={usuario.nome} ref={nome} type="text" class="form-control" id="NomeUsuario" />
+            <form className="row">
+                <div className="mb-6">
+                    <label for="NomeUsuario" className="form-label">Nome:</label>
+                    <input  defaultValue={usuario.nome} ref={nome} type="text" className="form-control" id="NomeUsuario" />
                 </div>
-                <div class="mb-6">
-                    <label for="EmailUsuario" class="form-label">Email:</label>
-                    <input  defaultValue={usuario.email} ref={email} type="email" class="form-control" id="EmailUsuario" />
+                <div className="mb-6">
+                    <label for="EmailUsuario" className="form-label">Email:</label>
+                    <input  defaultValue={usuario.email} ref={email} type="email" className="form-control" id="EmailUsuario" />
                 </div>
-                <div class="mb-6">
-                    <label for="senhaUsuario" class="form-label">Password:</label>
-                    <input  defaultValue={usuario.senha} ref={senha} type="password" class="form-control" id="senhaUsuario"/>
+                <div className="mb-6">
+                    <label for="senhaUsuario" className="form-label">Password:</label>
+                    <input  defaultValue={usuario.senha} ref={senha} type="password" className="form-control" id="senhaUsuario"/>
                 </div>
 
-                <div class="mb-4">
-                    <label for="inputState" class="form-label">Tipo de Usuário:</label>
-                    <select defaultValue={usuario.perfilId}  ref={perfil} id="inputState" class="form-select">
+                <div className="mb-4">
+                    <label for="inputState" className="form-label">Tipo de Usuário:</label>
+                    <select defaultValue={usuario.perfilId}  ref={perfil} id="inputState" className="form-select">
                         <option selected value={0}>--SELECIONE--</option>
                         {
                             listaPerfil.map(function(value, index){
@@ -114,8 +114,8 @@ export default function UsuarioForm(props){
                         }
                     </select>
                 </div>
-                <div class="col-12">
-                    <button onClick={usuario.id != 0 ? AlterarUsuario : cadastrarUsuario} type="submit" class="btn btn-primary btn-edit">{usuario.id != 0 ? "Alterar" : "Cadastrar"}</button>
+                <div className="col-12">
+                    <button onClick={usuario.id != 0 ? AlterarUsuario : cadastrarUsuario} type="submit" className="btn btn-primary btn-edit">{usuario.id != 0 ? "Alterar" : "Cadastrar"}</button>
                     <Link href="/admin/usuarios" className="btn btn-outline-danger">Voltar</Link>
                 </div>
             </form>
