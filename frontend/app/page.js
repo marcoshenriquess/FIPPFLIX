@@ -114,7 +114,6 @@ export default function Home() {
         <div className="cx-header-link">
           <a href="#home-planos">Planos</a>
           <a href="#home-sobre">Sobre</a>
-          <a href="#footer">Desenvolvedores</a>
         </div>
         {
           user != null
@@ -133,8 +132,7 @@ export default function Home() {
                       ?
                       <li><a class="dropdown-item" href="/admin">Área do Administrador</a></li>
                       :
-                      <li><a class="dropdown-item" href="/admin">Área de Criação</a></li>
-
+                      <li><a class="dropdown-item" href="/cliente/conteudo">Área de Criação</a></li>
                 }
                 <a href='/' class="dropdown-item" onClick={logout}>Sair</a>
               </ul>

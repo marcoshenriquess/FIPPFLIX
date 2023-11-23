@@ -32,7 +32,7 @@ export default function BarSerachNav({ children }) {
                     {
                         user.perfilId == 5
                         ?
-                        <a href='/admin'>Criar Conteudo</a>
+                        <a href='/cliente/conteudo'>Criar Conteudo</a>
                         :
                         <></>
                     }

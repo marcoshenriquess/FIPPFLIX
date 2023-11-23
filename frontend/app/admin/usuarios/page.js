@@ -1,6 +1,4 @@
 'use client'
-import LoadingPage from "@/app/componentes/loadingPage";
-import NaoAutorizado from "@/app/componentes/naoAutorizado";
 import UserContext from "@/app/context/userContext";
 import httpClient from "@/app/utils/httpClient";
 import Link from "next/link";
@@ -8,22 +6,11 @@ import { useContext, useEffect, useState } from "react"
 
 
 export default function Usuario() {
-    const [listaUsuario, setListaUsuario] = useState([]);
     const { user, setUser } = useContext(UserContext);
+    const [listaUsuario, setListaUsuario] = useState([]);
 
     const [isClient, setIsClient] = useState(false);
 
-    useEffect(() => {
-        setIsClient(true);
-        ListaUsu();
-    })
-
-    if(isClient == false){
-        return (<LoadingPage></LoadingPage>)
-    }
-    if(isClient && user.perfilId != 4 && user.perfilId != 5) {
-        return (<NaoAutorizado></NaoAutorizado>)
-    }
 
     function ListaUsu() {
         httpClient.get('/usuario/listar')
@@ -47,6 +34,10 @@ export default function Usuario() {
                 })
         }
     }
+    useEffect(() => {
+        setIsClient(true);
+        ListaUsu();
+    }, []);
     return (
         <div>
             <div className="cx-titulo-tela-admin">
@@ -74,22 +65,22 @@ export default function Usuario() {
                                             <td>{value.email}</td>
                                             <td>{value.perfilId}</td>
                                             <td className="coluna-acoes">
-                                                <Link className="btn btn-success"  href={`/admin/usuarios/alterar/${value.id}`}>
+                                                <Link className="btn btn-success" href={`/admin/usuarios/alterar/${value.id}`}>
                                                     <i className="fas fa-pen"></i>
                                                 </Link>
-                                            <button onClick={() => ExcluirUsu(value.id)} className="btn btn-primary">
-                                                <i className="fas fa-trash"></i>
-                                            </button>
-                                        </td>
+                                                <button onClick={() => ExcluirUsu(value.id)} className="btn btn-primary">
+                                                    <i className="fas fa-trash"></i>
+                                                </button>
+                                            </td>
                                         </tr>
                                     })
                                 }
-                        </tbody>
+                            </tbody>
                         </table>
-            :
-            <>Nenhum usuário encontrado</>
+                        :
+                        <>Nenhum usuário encontrado</>
                 }
-        </div>
+            </div>
         </div >
     )
 }
