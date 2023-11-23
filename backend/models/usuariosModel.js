@@ -83,9 +83,9 @@ class UsuarioModel {
 
             let valores = [this.#email,  this.#senha, this.#nome, this.#perfilId]
 
-            let idGravado = await banco.ExecutaComandoLastInserted(sql, valores);
-
-            return idGravado;
+            let ok = await banco.ExecutaComandoLastInserted(sql, valores);
+            this.#id = ok;
+            return ok;
         }
         else //comando update
         { 

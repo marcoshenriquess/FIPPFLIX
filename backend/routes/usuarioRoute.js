@@ -27,9 +27,6 @@ auth.validarToken, (req, res) => {
 
 router.post('/criar', auth.validarToken, (req, res) => {
     // #swagger.tags = ['Usuário']
-    /* #swagger.security = [{
-            "apiKeyAuth": ['PFSII']
-    }] */
     /*  #swagger.requestBody = {
             required: true,
             content: {

@@ -12,4 +12,9 @@ router.get('/listar', (req, res) => {
 
     ctrl.listar(req,res);
 })
+router.get('/obter/:id', (req, res) => {
+    // #swagger.tags = ['Plano']
+
+    ctrl.obter(req,res);
+})
 module.exports = router;

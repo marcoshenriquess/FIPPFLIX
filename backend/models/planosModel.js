@@ -19,7 +19,20 @@ class PlanosModel{
         this.#descricao = descricao;
         this.#valor = valor
     }
+    async obter(id){
+        let sql = "select * from tb_plano where pla_id = ?";
+        let valores = [id];
 
+        let rows = await conexao.ExecutaComando(sql, valores);
+
+        if(rows.length > 0) {
+            let usuario = new PlanosModel(rows[0]["pla_id"], rows[0]["pla_nome"], rows[0]["pla_descricao"], rows[0]["pla_valor"]);
+
+            return usuario;
+        }
+
+        return null
+    }
     async listarPlano(){
         let lista = [];
         let sql = "select * from tb_plano";

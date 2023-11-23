@@ -72,13 +72,6 @@
             "description": ""
           }
         },
-        "security": [
-          {
-            "apiKeyAuth": [
-              "PFSII"
-            ]
-          }
-        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -213,13 +206,6 @@
             "description": ""
           }
         },
-        "security": [
-          {
-            "apiKeyAuth": [
-              "PFSII"
-            ]
-          }
-        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -467,6 +453,29 @@
         }
       }
     },
+    "/plano/obter/{id}": {
+      "get": {
+        "tags": [
+          "Plano"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/login/autenticar": {
       "post": {
         "tags": [
@@ -516,7 +525,7 @@
         }
       }
     },
-    "/pagamento/pagamento-sucesso/{planoId}/{usuId}": {
+    "/pagamento/pagamento-sucesso/{usuId}/{planoId}": {
       "post": {
         "tags": [
           "Pagamento"
@@ -524,7 +533,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "planoId",
+            "name": "usuId",
             "in": "path",
             "required": true,
             "schema": {
@@ -532,7 +541,7 @@
             }
           },
           {
-            "name": "usuId",
+            "name": "planoId",
             "in": "path",
             "required": true,
             "schema": {

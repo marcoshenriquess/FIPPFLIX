@@ -11,6 +11,7 @@ export default function Home() {
   const email = useRef("");
   const senha = useRef("");
   const plano = useRef(0);
+  let idUsuAtual = "";
   const { user, setUser } = useContext(UserContext);
   const [ListaPlano, setListaPlano] = useState([]);
 
@@ -37,16 +38,17 @@ export default function Home() {
         setListaPlano(r);
       })
   }
-
+  function realizaCadastro(){
+    cadastrarUsuario();
+     
+  }
   function cadastrarUsuario() {
-    //Precisa setar o id do plano no combo, e também receber o id do usuário na requisição
     let status = 0;
     if (nome.current.value != "" &&
       email.current.value != "" &&
       plano.current.value != 0 &&
       senha.current.value != "") {
-      let PlanoAt = plano.current.value;
-      let NomeAt = nome.current.value;
+
 
       httpClient.post('/usuario/criar', {
         nome: nome.current.value,
@@ -60,12 +62,13 @@ export default function Home() {
           return r.json();
         })
         .then(r => {
+          
           if (status == 200) {
+            realizarPagamento(r.usu.id);
             nome.current.value = "";
             email.current.value = "";
             plano.current.value = 0;
             senha.current.value = "";
-            realizarPagamento(500, PlanoAt, NomeAt, 1, 1);
           }
         })
     }
@@ -73,14 +76,12 @@ export default function Home() {
       alert("Preencha os campos corretamente!");
     }
   }
-  function realizarPagamento(valor, plano, nome, planoId, usuId) {
+  function realizarPagamento(id) {
     let status = 0;
     httpClient.post('/pagamento/checkout', {
-      valor: valor,
-      plano: plano,
-      nome: nome,
-      planoId: planoId,
-      usuId: usuId
+      nome: nome.current.value,
+      planoId: plano.current.value,
+      usuId: id
     })
       .then(r => {
         status = r.status;
@@ -91,6 +92,9 @@ export default function Home() {
           window.location.href = r.url;
         }
       })
+      
+
+    
   }
 
 
@@ -185,10 +189,10 @@ export default function Home() {
                 <div className="cx-card-bt">
                   {
                     user != null
-                    ?
-                    <a href="#home-sobre" className="btn btn-primary btn-edit">Assinar</a>
-                    :
-                    <a href="#home-cadastrar" className="btn btn-primary btn-edit">Assinar</a>
+                      ?
+                      <a href="#home-sobre" className="btn btn-primary btn-edit">Assinar</a>
+                      :
+                      <a href="#home-cadastrar" className="btn btn-primary btn-edit">Assinar</a>
                   }
                 </div>
               </div>
@@ -215,7 +219,20 @@ export default function Home() {
               <label htmlFor="exampleInputPassword1" className="form-label">Senha:</label>
               <input ref={senha} type="password" className="form-control" id="exampleInputPassword1" />
             </div>
-            <button onClick={cadastrarUsuario} type="submit" className="btn btn-primary">Cadastrar</button>
+            <div className="mb-3">
+              <label htmlFor="selectPlano" className="form-label">Plano:</label>
+              <select ref={plano} id="inputState" className="form-select">
+                <option value={0}>---SELECIONE---</option>
+                {
+                  ListaPlano.map(function (value, index) {
+                    return <option value={value.pla_id}>{value.pla_nome} - R${value.pla_valor}</option>
+                  })
+                }
+              </select>
+
+            </div>
+
+            <button onClick={realizaCadastro} type="button" className="btn btn-primary">Cadastrar</button>
           </form>
         </div>
       </div>

@@ -75,8 +75,8 @@ class UsuarioController {
         }
     }
 
-    criar(req, res) {
-        if(Object.keys(req.body).length == 4) {
+    async criar(req, res) {
+        if(Object.keys(req.body).length == 5) {
             let usuarioModel = new UsuarioModel();
 
             usuarioModel.id = 0;
@@ -84,9 +84,9 @@ class UsuarioController {
             usuarioModel.email = req.body.email;
             usuarioModel.perfilId = req.body.perfilId;          
             usuarioModel.senha = req.body.senha;
-            let ok = usuarioModel.gravar()
+            let ok = await usuarioModel.gravar()
             if(ok)
-                res.status(200).json({msg: "Usuário adicionado!"})
+                res.status(200).json({msg: "Usuário adicionado!", usu: usuarioModel.toJSON()})
             else
                 res.status(500).json({msg: "Erro ao gravar usuário"})
         }

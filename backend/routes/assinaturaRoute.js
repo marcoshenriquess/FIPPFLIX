@@ -12,7 +12,7 @@ router.post("/checkout/", (req, res) => {
 })
 
 
-router.post("/pagamento-sucesso/:planoId/:usuId", (req, res) =>  {
+router.post("/pagamento-sucesso/:usuId/:planoId", (req, res) =>  {
     // #swagger.tags = ['Pagamento']
     ctrl.sucesso(req, res);
 })
