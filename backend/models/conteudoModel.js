@@ -60,7 +60,7 @@ class ConteudoModel {
     toJSON() {
         return {
             "id": this.#id,
-            "youtubeid": this.#youtubeid,
+            "youtubeId": this.#youtubeid,
             "titulo": this.#titulo,
             "disponivel": this.#disponivel,
             "cat_id": this.#cat_id
@@ -118,7 +118,7 @@ class ConteudoModel {
         let lista = [];
 
         for(let i = 0; i<rows.length; i++){
-            lista.push(new ConteudoModel(rows[0]["con_id"], rows[0]["con_titulo"], rows[0]["con_disponivel"], rows[0]["cat_id"]))
+            lista.push(new ConteudoModel(rows[i]["con_id"], rows[i]['con_youtubeid'], rows[i]["con_titulo"], rows[i]["con_disponivel"], rows[i]["cat_id"]))
         }
 
         return lista;

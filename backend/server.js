@@ -1,6 +1,7 @@
 const express = require('express');
 const usuarioRota = require('./routes/usuarioRoute');
 const perfilRota = require('./routes/perfilRoute');
+const categoria = require('./routes/categoriaRoute');
 const planoRota = require('./routes/planoRoute');
 const loginRota = require('./routes/loginRoute');
 const conteudoRota = require('./routes/conteudoRoute');
@@ -15,6 +16,7 @@ app.use(cors({origin: 'http://localhost:3000', credentials: true}))
 app.use('/usuario', usuarioRota);
 app.use('/cliente', usuarioRota);
 app.use('/conteudo', conteudoRota);
+app.use('/categoria', categoria);
 app.use('/perfil', perfilRota);
 app.use('/plano', planoRota);
 app.use('/login', loginRota);

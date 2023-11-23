@@ -1,7 +1,6 @@
 'use client'
-import { useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import httpClient from "@/app/utils/httpClient"
-import { Alert } from "@/public/template/js/bootstrap.bundle";
 
 export default function CriarConteudo() {
     //Precisa setar o id da categoria na referência e setar o disponivel true/false baseado no checked
@@ -9,6 +8,19 @@ export default function CriarConteudo() {
     const titulo = useRef("");
     const disponivel = useRef("");
     const cat_id = useRef("");
+
+    const [listaCat, setListaCat] = useState([]);
+
+    function ListarCategoria(){
+        httpClient.get('/categoria/listar')
+        .then(r=>{
+            return r.json();
+    
+        })
+        .then(r=>{
+            setListaCat(r);
+        })
+    }
   
    function cadastrarConteudo() {
       let status = 0;
@@ -19,32 +31,36 @@ export default function CriarConteudo() {
           httpClient.post('/conteudo/criar', {
               youtubeId: youtubeId.current.value,
               titulo: titulo.current.value,
-              cat_id: 1,
-              disponivel: 'S',
+              cat_id: cat_id.current.value,
+              disponivel: disponivel.current.checked  ? "S" : "N" 
             })
           .then(r=> {
               status = r.status;
               return r.json();
           })
           .then( r=> {
+            alert(r.msg);
               if(status == 200){      
                 youtubeId.current.value = "";
                 titulo.current.value = "";
-                cat_id.current.value = "";
+                cat_id.current.value = 0;
+                disponivel.current.checked = false;
               }
-              alert(r.msg);
           })
         }
       else{
           alert("Preencha os campos corretamente!");
       }
   }
+  useEffect(() => {
+    ListarCategoria();
+  }, []);
     return (
         <div className="tela-cadastro cx-table-main">
             <form className="row g-3">
                 <div className="col-md-6">
                     <label for="idConteudo" className="form-label">ID do Video</label>
-                    <input ref={youtubeId} type="titulo" className="form-control" id="idConteudo"/>
+                    <input ref={youtubeId} type="text" className="form-control" id="idConteudo"/>
                 </div>
                 <div className="col-md-6">
                     <label for="tituloConteudo" className="form-label">Título</label>
@@ -53,8 +69,12 @@ export default function CriarConteudo() {
                 <div className="col-md-4">
                     <label for="inputState" className="form-label">Categoria</label>
                     <select ref={cat_id} id="inputState" className="form-select">
-                        <option selected>Choose...</option>
-                        <option>...</option>
+                        <option selected >---SELECIONE---</option>
+                        {
+                            listaCat.map(function(value,index){
+                                return <option value={value.id}>{value.nome}</option>
+                            })
+                        }
                     </select>
                 </div>
                 <div className="col-12">

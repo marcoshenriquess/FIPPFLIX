@@ -420,6 +420,19 @@
         ]
       }
     },
+    "/categoria/listar": {
+      "get": {
+        "tags": [
+          "Categoria"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/perfil/listar": {
       "get": {
         "tags": [

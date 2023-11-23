@@ -80,7 +80,7 @@ class conteudoController {
             let contModel = new ConteudoModel();
 
             contModel.id = 0;
-            contModel.youtubeid = req.body.youtubeid;
+            contModel.youtubeid = req.body.youtubeId;
             contModel.titulo = req.body.titulo;
             contModel.disponivel = req.body.disponivel;
             contModel.cat_id = req.body.cat_id;
