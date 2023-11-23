@@ -114,6 +114,7 @@ export default function Home() {
         <div className="cx-header-link">
           <a href="#home-planos">Planos</a>
           <a href="#home-sobre">Sobre</a>
+          <a href="#footer">Desenvolvedores</a>
         </div>
         {
           user != null

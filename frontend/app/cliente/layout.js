@@ -28,7 +28,6 @@ export default function BarSerachNav({ children }) {
                 </div>
                 <div className="cx-header-link">
                     <a href="/cliente">Videos</a>
-                    <a href="#">Minha lista</a>
                     {
                         user.perfilId == 5
                         ?
