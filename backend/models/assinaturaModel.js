@@ -7,6 +7,10 @@ class AssinaturaModel {
     #usu_id;
     #pla_id;
     #pago;
+    #dataPgto;
+    #plano;
+    #usuario;
+    #valor;
 
     get usu_id() {
         return this.#usu_id;
@@ -26,12 +30,40 @@ class AssinaturaModel {
     set pla_id(pla_id){
         this.#pla_id = pla_id;
     }
-
-    constructor(usu_id, pla_id, pago){
+    get dataPgto() {
+        return this.#dataPgto;
+    }
+    set dataPgto(dataPgto){
+        this.#dataPgto = dataPgto;
+    }
+    get plano() {
+        return this.#plano;
+    }
+    set plano(plano){
+        this.#plano = plano;
+    }
+    get usuario() {
+        return this.#usuario;
+    }
+    set usuario(usuario){
+        this.#usuario = usuario;
+        
+    }
+    
+    get valor() {
+        return this.#valor;
+    }
+    set valor(valor){
+        this.#valor = valor;
+    }
+    constructor(usu_id, pla_id, pago, dataPgto, plano, usuario, valor){
         this.#usu_id = usu_id;
         this.#pla_id = pla_id;
         this.#pago = pago;
-
+        this.#dataPgto = dataPgto;
+        this.#plano = plano;
+        this.#usuario = usuario;
+        this.#valor = valor;
     }
 
     async gravar(){
@@ -47,6 +79,20 @@ class AssinaturaModel {
 
         }
     }
+    async obterTodos() {
+
+        let sql  = "SELECT tb_pagamento.*,tb_usuario.usu_nome,tb_plano.pla_nome, tb_plano.pla_valor FROM tb_pagamento left join tb_usuario on tb_usuario.usu_id = tb_pagamento.usu_id left join tb_plano on tb_plano.pla_id = tb_pagamento.pla_id";
+
+        let rows = await conexao.ExecutaComando(sql);
+        let lista = [];
+
+        for(let i = 0; i<rows.length; i++){
+            lista.push(new AssinaturaModel(rows[i]["usu_id"],rows[i]["pla_id"],
+              true, rows[i]["pag_data"], rows[i]["pla_nome"], rows[i]["usu_nome"],rows[i]["pla_valor"]))
+        }
+
+        return lista;
+    }
     async verificarPagamento(){
         try {
            let sql = "select * from tb_pagamento where usu_id = ? and pla_id = ?"
@@ -54,14 +100,26 @@ class AssinaturaModel {
            
            let rows = await conexao.ExecutaComando(sql, valores);
            if(rows.length>0){
-            let assinatura = new AssinaturaModel(this.#usu_id, this.#pla_id,true);
+            let assinatura = new AssinaturaModel(this.#usu_id, this.#pla_id,true,rows[i]["pag_data"],'','','');
             return assinatura;
            }else{
-            let assinatura = new AssinaturaModel(this.#usu_id, this.#pla_id,false);
+            let assinatura = new AssinaturaModel(this.#usu_id, this.#pla_id,false, '','','','');
             return assinatura;            
            }
         } catch (error) {
             
+        }
+    }
+
+    toJSON(){
+        return{
+            "dataPgto": this.#dataPgto,
+            "usu_id": this.#usu_id,
+            "pla_id": this.#pla_id,
+            "pago": this.#pago,
+            "plano": this.#plano,
+            "usuario": this.#usuario,
+            "valor": this.#valor
         }
     }
 

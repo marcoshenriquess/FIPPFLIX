@@ -538,6 +538,19 @@
         }
       }
     },
+    "/pagamento/listar": {
+      "get": {
+        "tags": [
+          "Pagamento"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/pagamento/pagamento-sucesso/{usuId}/{planoId}": {
       "post": {
         "tags": [

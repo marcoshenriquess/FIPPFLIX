@@ -11,6 +11,11 @@ router.post("/checkout/", (req, res) => {
     ctrl.checkout(req, res);
 })
 
+router.get("/listar", (req, res) => {
+    // #swagger.tags = ['Pagamento']
+    ctrl.listar(req, res);
+})
+
 
 router.post("/pagamento-sucesso/:usuId/:planoId", (req, res) =>  {
     // #swagger.tags = ['Pagamento']

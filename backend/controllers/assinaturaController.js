@@ -5,6 +5,17 @@ const PlanosModel = require("../models/planosModel");
 const stripe = require('stripe')('sk_test_51NuhsfKJ4ExSCfWr7N7tsD8LhsqlRPm0CnHn8TxIoAZkRJsOSGaofgS9TxFHA2AWTcmZMzuKhyh0qotNfGRq7jYn0048B8tPws');
 
 class PagamentoController {
+  async listar(req, res) {
+    let assinatura = new AssinaturaModel();
+    let lista = await assinatura.obterTodos();
+    let listaRetorno = [];
+
+    for(let i = 0; i<lista.length; i++){
+        listaRetorno.push(lista[i].toJSON())
+    }
+
+    res.status(200).json(listaRetorno);
+}
     async checkout(req, res) {
         if( req.body.nome != "" && req.body.planoId != "" && req.body.usuId != "" ){
           let plano = new PlanosModel();
@@ -23,7 +34,7 @@ class PagamentoController {
                   },
                 ],
                 mode: 'payment',
-                success_url: `http://localhost:3000/cliente/pagamento-sucesso/${req.body.usuId}/${req.body.planoId}`,
+                success_url: `http://localhost:3000/`,
                 cancel_url: `http://localhost:3000/teste`,
               });
               res.status(200).json({url: session.url}); 
@@ -33,11 +44,11 @@ class PagamentoController {
     }
     async sucesso(req,res){
       let assinatura = new AssinaturaModel();
-      assinatura.pla_id = req.body.planoId;
-      assinatura.usu_id = req.body.usuId;
+      assinatura.pla_id = req.params.planoId;
+      assinatura.usu_id = req.params.usuId;
       let ok = assinatura.gravar();
       if(ok){
-        return res.redirect('/clientes');
+        return res.redirect('/cliente');
       }
 
     }

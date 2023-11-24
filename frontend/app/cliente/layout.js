@@ -27,7 +27,7 @@ export default function BarSerachNav({ children }) {
                     <a href="/"><img src="/img/LOGO.png" className='img-logo'></img></a>
                 </div>
                 <div className="cx-header-link">
-                    <a href="/cliente">Videos</a>
+                <a  href="/cliente">Videos</a>
                     {
                         user.perfilId == 5
                         ?
@@ -35,14 +35,8 @@ export default function BarSerachNav({ children }) {
                         :
                         <></>
                     }
-                    <div className="input-group mb-3 inpt-edit">
-                        <input type="text" className="form-control edit-inpt-form" placeholder="Pesquisar" aria-label="Recipient's username" aria-describedby="button-addon2" />
-                        <button className="btn btn-outline-danger" type="button" id="button-addon2"><i className='fa fa-search'></i></button>
-                    </div>
-                </div>
-
-                <div className="cx-header-register">
-                    <button onClick={logout} className='btn btn-primary'><i className="fas fa-sign-out-alt"></i>Sair</button>
+                    
+                <button onClick={logout} className='btn btn-primary'><i className="fas fa-sign-out-alt"></i>Sair</button>
                 </div>
             </div>
             <div className="conteudo-cliente">

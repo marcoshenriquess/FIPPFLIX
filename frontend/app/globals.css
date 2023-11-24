@@ -350,7 +350,14 @@ html {
 }
 
 .conteudo-cliente {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   background-color: #252525;
+}
+.conteudo-cliente a{
+  width: 100px;
 }
 
 .cx-full-tela {
